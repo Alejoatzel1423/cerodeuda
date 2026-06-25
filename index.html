@@ -4,238 +4,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CeroDeuda — Elimina tus deudas en Colombia</title>
-  <meta name="description" content="Solución legal para eliminar tus deudas en Colombia. Negociamos con bancos, centrales de riesgo y cobradores. ✅ Sin pagos por adelantado.">
-  <meta property="og:title" content="CeroDeuda — Elimina tus deudas">
-  <meta property="og:description" content="Solución legal para eliminar tus deudas en Colombia.">
-  <meta property="og:image" content="https://alejoatzel1423.github.io/cerodeuda/og-image.jpg">
+  <meta name="description" content="Estrategia personalizada para salir de deudas en Colombia. Consultoría financiera, negociación con bancos y centrales de riesgo. Recupera tu tranquilidad.">
+  <meta property="og:title" content="CeroDeuda — Elimina tus deudas en Colombia">
+  <meta property="og:description" content="Recupera tu libertad financiera. Estrategia 100% personalizada para colombianos.">
+  <meta property="og:image" content="https://alejoatzel1423.github.io/cerodeuda/img/og.jpg">
   <meta name="theme-color" content="#6600FF">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.10/dist/typography.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'Neuropolitical';
+      src: url('https://alejoatzel1423.github.io/cerodeuda/fonts/neuropolitical.woff2') format('woff2');
+      font-display: swap;
+    }
+  </style>
 </head>
 <body>
   <div id="p5-bg"></div>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="header">
     <div class="container header__inner">
-      <a href="/" class="logo animate__animated animate__fadeIn">
-        Cero<span>Deuda</span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+      <a href="/" class="logo">Cero<span>Deuda</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
       <nav class="nav" id="mainNav">
         <ul class="nav__list">
-          <li><a href="#solucion">Solución</a></li>
           <li><a href="#como-funciona">Cómo funciona</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contacto" style="color:var(--cyan)">Contacto</a></li>
+          <li><a href="https://wa.me/573000000000?text=Quiero%20salir%20de%20deudas" class="btn btn--primary" style="padding:10px 24px;font-size:0.85rem">Diagnóstico gratis</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div class="animate__animated animate__fadeInLeft">
-          <span class="hero__tag animate__animated animate__fadeIn">⚡ Solución legal en Colombia</span>
-          <h1 class="hero__title animate__animated animate__fadeIn animate__delay-1s">
-            Elimina tus deudas<br>
-            <span>sin pagar</span>
-          </h1>
-          <p class="hero__subtitle animate__animated animate__fadeIn animate__delay-1s">
-            Negociamos con bancos y centrales de riesgo para limpiar tu historial crediticio.
-            Sin pagos por adelantado. Resultados garantizados.
-          </p>
-          <div class="hero__actions animate__animated animate__fadeInUp animate__delay-2s">
-            <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20eliminar%20mis%20deudas" class="btn btn--primary btn--large glow-purple" target="_blank">
-              <i class="fab fa-whatsapp"></i> Consulta gratis
-            </a>
-            <a href="#como-funciona" class="btn btn--secondary btn--large">
-              Cómo funciona
-            </a>
-          </div>
-        </div>
-        <div class="hero__visual animate__animated animate__fadeInRight animate__delay-1s">
-          <div class="hero__card">
-            <div class="hero__card-content">
-              <div class="hero__card-value">$0</div>
-              <div class="hero__card-label">Sin pagos por adelantado</div>
-              <div class="hero__card-features">
-                <div class="hero__card-feat"><i class="fas fa-check-circle"></i> Resultados en 30-90 días</div>
-                <div class="hero__card-feat"><i class="fas fa-check-circle"></i> Eliminamos de Datacrédito</div>
-                <div class="hero__card-feat"><i class="fas fa-check-circle"></i> +1.200 clientes satisfechos</div>
-                <div class="hero__card-feat"><i class="fas fa-check-circle"></i> Cobertura nacional</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="glow-purple" style="top:10%;left:-10%"></div>
+    <div class="glow-cyan" style="bottom:20%;right:-5%"></div>
+    <div class="hero__content">
+      <span class="hero__badge animate__animated animate__fadeInDown">🇨🇴 Hecho para colombianos</span>
+      <h1 class="hero__title">Deudas que te<br>ahogan ya <span style="background:linear-gradient(135deg,#6600FF,#00E5FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">terminaron</span></h1>
+      <p class="hero__subtitle">Estrategia personalizada para eliminar tus deudas. Negociamos con bancos, centrales de riesgo y cobradores. Resultados reales en 90 días.</p>
 
-  <!-- STATS -->
-  <section class="section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat fade-in"><div class="stat__num">+1,200</div><div class="stat__label">Clientes satisfechos</div></div>
-        <div class="stat fade-in delay-1"><div class="stat__num">$4.2B</div><div class="stat__label">En deudas eliminadas</div></div>
-        <div class="stat fade-in delay-2"><div class="stat__num">30-90</div><div class="stat__label">Días de proceso</div></div>
-        <div class="stat fade-in delay-3"><div class="stat__num">98%</div><div class="stat__label">Casos exitosos</div></div>
+      <div class="price-hero">
+        <span class="price-old">$450,000</span>
+        <span class="price-new">$0</span>
+        <span class="price-label">Diagnóstico gratis</span>
       </div>
-    </div>
-  </section>
 
-  <!-- SOLUCIÓN -->
-  <section class="section" id="solucion">
-    <div class="container">
-      <h2 class="section__title fade-in">¿Qué es <span>CeroDeuda</span>?</h2>
-      <p class="section__subtitle fade-in">
-        Somos un servicio legal colombiano especializado en negociación de deudas con entidades financieras.
-        Te ayudamos a limpiar tu historial crediticio y recuperar tu tranquilidad financiera.
-      </p>
-      <div class="card-grid">
-        <div class="card fade-in-left glow-purple">
-          <span class="card__icon">🏛️</span>
-          <h3 class="card__title">Marco Legal</h3>
-          <p class="card__text">Operamos bajo la normativa colombiana vigente. Negociamos con bancos respaldados por las leyes de protección al consumidor financiero.</p>
-        </div>
-        <div class="card fade-in glow-cyan">
-          <span class="card__icon">🛡️</span>
-          <h3 class="card__title">Sin Pagar</h3>
-          <p class="card__text">Solo cobramos cuando logramos la reducción o eliminación de tu deuda. Sin resultados = sin costo. Así de simple.</p>
-        </div>
-        <div class="card fade-in-right">
-          <span class="card__icon">📋</span>
-          <h3 class="card__title">Cobertura Nacional</h3>
-          <p class="card__text">Atendemos clientes en Bogotá, Medellín, Cali, Barranquilla y todo el territorio colombiano. 100% online.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="section" id="como-funciona" style="background: linear-gradient(180deg, transparent, rgba(102,0,255,0.03), transparent);">
-    <div class="container">
-      <h2 class="section__title fade-in">¿Cómo <span>funciona</span>?</h2>
-      <p class="section__subtitle fade-in">
-        Tres pasos simples para eliminar tus deudas y recuperar tu vida financiera
-      </p>
-      <div class="steps">
-        <div class="step fade-in">
-          <div class="step__num">1</div>
-          <h3 class="step__title">Consulta gratis</h3>
-          <p style="color:var(--text-light);font-size:0.9rem;line-height:1.7">Cuéntanos tu situación por WhatsApp. Analizamos tus deudas sin compromiso.</p>
-        </div>
-        <div class="step fade-in delay-1">
-          <div class="step__num">2</div>
-          <h3 class="step__title">Negociamos</h3>
-          <p style="color:var(--text-light);font-size:0.9rem;line-height:1.7">Contactamos a tus acreedores y negociamos la reducción o eliminación de tu deuda.</p>
-        </div>
-        <div class="step fade-in delay-2">
-          <div class="step__num">3</div>
-          <h3 class="step__title">Resultado</h3>
-          <p style="color:var(--text-light);font-size:0.9rem;line-height:1.7">Tu historial se limpia. Recuperas tu capacidad de crédito. Fin del estrés.</p>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:48px" class="fade-in">
-        <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20eliminar%20mis%20deudas" class="btn btn--primary btn--large glow-purple" target="_blank">
-          <i class="fab fa-whatsapp"></i> Inicia tu proceso
+      <div class="hero__buttons">
+        <a href="https://wa.me/573000000000?text=Quiero%20mi%20diagn%C3%B3stico%20financiero%20gratis" class="btn btn--primary btn--lg" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Diagnóstico gratis
         </a>
+        <a href="#como-f的首字母" class="btn btn--secondary btn--lg">Cómo funciona</a>
+      </div>
+
+      <div class="scarcity animate__animated animate__fadeInUp animate__delay-2s">
+        <div class="scarcity__text"><i class="fas fa-fire" style="color:#F4A261"></i> Cupones disponibles este mes</div>
+        <div class="scarcity__bar"><div class="scarcity__fill"></div></div>
+        <div class="scarcity__count">27% completado — quedan 13 de 18 cupos</div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- Cómo funciona -->
+  <section class="section section--dark" id="como-funciona">
+    <div class="container">
+      <h2 class="section__title animate__animated" data-animate>Así de simple</h2>
+      <p class="section__subtitle animate__animated" data-animate>4 pasos y empiezas a respirar tranquilo</p>
+      <div class="steps">
+        <div class="step animate__animated" data-animate>
+          <div class="step__num">01</div>
+          <h4>Diagnóstico gratis</h4>
+          <p>Cuéntanos tu situación por WhatsApp. Sin compromiso.</p>
+        </div>
+        <div class="step animate__animated" data-animate data-delay="1">
+          <div class="step__num">02</div>
+          <h4>Evaluación financiera</h4>
+          <p>Analizamos tus deudas, ingresos y centrales de riesgo.</p>
+        </div>
+        <div class="step animate__animated" data-animate data-delay="2">
+          <div class="step__num">03</div>
+          <h4>Estrategia personalizada</h4>
+          <p>Creamos un plan de negociación y pago a tu medida.</p>
+        </div>
+        <div class="step animate__animated" data-animate data-delay="3">
+          <div class="step__num">04</div>
+          <h4>Resultados</h4>
+          <p>Te liberamos de deudas. Recuperas tu historial crediticio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
   <section class="section" id="servicios">
     <div class="container">
-      <h2 class="section__title fade-in">Nuestros <span>servicios</span></h2>
-      <p class="section__subtitle fade-in">Soluciones diseñadas para cada tipo de deuda en Colombia</p>
-      <div class="card-grid">
-        <div class="card fade-in-left">
-          <span class="card__icon">💳</span>
-          <h3 class="card__title">Tarjetas de crédito</h3>
-          <p class="card__text">Negociamos saldos elevados y tasas de interés con bancos colombianos para reducir tu deuda hasta en un 70%.</p>
-        </div>
-        <div class="card fade-in glow-purple">
-          <span class="card__icon">🏠</span>
-          <h3 class="card__title">Créditos hipotecarios</h3>
-          <p class="card__text">Reestructuramos tu crédito de vivienda para hacerlo manejable y evitar el remate de tu propiedad.</p>
-        </div>
-        <div class="card fade-in-right glow-cyan">
-          <span class="card__icon">🚗</span>
-          <h3 class="card__title">Créditos vehiculares</h3>
-          <p class="card__text">Evita el embargo de tu vehículo. Negociamos nuevas condiciones con la entidad financiera.</p>
-        </div>
-        <div class="card fade-in-left">
-          <span class="card__icon">📄</span>
-          <h3 class="card__title">Datacrédito</h3>
-          <p class="card__text">Limpiamos tu historial en centrales de riesgo para que puedas acceder a nuevos créditos.</p>
-        </div>
-        <div class="card fade-in glow-purple">
+      <h2 class="section__title animate__animated" data-animate>Todo lo que necesitas</h2>
+      <p class="section__subtitle animate__animated" data-animate">Un solo equipo para resolver todo</p>
+      <div class="cards">
+        <div class="card animate__animated" data-animate>
           <span class="card__icon">🏦</span>
-          <h3 class="card__title">Préstamos personales</h3>
-          <p class="card__text">Deudas con bancos, cooperativas o prestamistas. Negociamos tu saldo y las condiciones de pago.</p>
+          <h3>Negociación con bancos</h3>
+          <p>Reducimos tu deuda hasta un 70%. Negociamos con Bancolombia, Davivienda, BBVA, Scotiabank Colpatria y todos los bancos de Colombia.</p>
         </div>
-        <div class="card fade-in-right">
+        <div class="card animate__animated" data-animate data-delay="1">
+          <span class="card__icon">🛡️</span>
+          <h3>Centrales de riesgo</h3>
+          <p>Limpiamos tu historial en Datacrédito y Cifin. Reportamos como "pagado" y gestionamos la eliminación de reportes negativos.</p>
+        </div>
+        <div class="card animate__animated" data-animate data-delay="2">
           <span class="card__icon">⚖️</span>
-          <h3 class="card__title">Embargos</h3>
-          <p class="card__text">Detenemos procesos de embargo judicial y protegemos tus bienes ante demandas financieras.</p>
+          <h3>Asesoría legal</h3>
+          <p>Protección contra cobradores abusivos. Demandas, embargos y procesos jurídicos. Tu tranquilidad es primero.</p>
+        </div>
+        <div class="card animate__animated" data-animate data-delay="1">
+          <span class="card__icon">📊</span>
+          <h3>Educación financiera</h3>
+          <p>Aprende a manejar tu dinero. Presupuesto, ahorro, inversión. No vuelvas a caer en deudas.</p>
+        </div>
+        <div class="card animate__animated" data-animate data-delay="2">
+          <span class="card__icon">💳</span>
+          <h3>Tarjetas de crédito</h3>
+          <p>Refinanciamos y consolidamos tus tarjetas. Una sola cuota, un solo interés.</p>
+        </div>
+        <div class="card animate__animated" data-animate>
+          <span class="card__icon">🏠</span>
+          <h3>Hipotecas y vehículos</h3>
+          <p>Protegemos tu patrimonio. Negociación de créditos hipotecarios y prendarios.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS -->
-  <section class="section" id="testimonios" style="background: linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent);">
+  <!-- Testimonios -->
+  <section class="section section--dark" id="testimonios">
     <div class="container">
-      <h2 class="section__title fade-in">Lo que dicen <span>nuestros clientes</span></h2>
-      <p class="section__subtitle fade-in">Historias reales de colombianos que recuperaron su tranquilidad financiera</p>
-      <div class="card-grid">
-        <div class="card fade-in" style="border-color:rgba(102,0,255,0.15)">
-          <div style="display:flex;gap:4px;margin-bottom:12px;color:var(--cyan);font-size:1.2rem">
-            ★★★★★
-          </div>
-          <p style="font-size:0.9rem;color:var(--text-light);margin-bottom:16px;line-height:1.7">
-            "Debía $8 millones en tres tarjetas de crédito. Pensé que nunca saldría de eso. En 45 días CeroDeuda negoció todo y solo pagué $1.5 millones. Cambiaron mi vida."
-          </p>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem">MC</div>
-            <div><strong style="font-size:0.9rem">María Camila R.</strong><br><span style="font-size:0.8rem;color:var(--text-light)">Bogotá</span></div>
-          </div>
+      <h2 class="section__title animate__animated" data-animate">Ya lo lograron</h2>
+      <p class="section__subtitle animate__animated" data-animate">Colombianos que recuperaron su tranquilidad financiera</p>
+      <div class="testimonials">
+        <div class="testimonial animate__animated" data-animate>
+          <div class="testimonial__stars">★★★★★</div>
+          <p>"Tenía 12 millones en deudas de tarjetas. En 3 meses quedé a cero. Hoy tengo mi primer apartamento."</p>
+          <div class="testimonial__author">Carlos M. <span>Bogotá</span></div>
         </div>
-        <div class="card fade-in delay-1" style="border-color:rgba(0,229,255,0.15)">
-          <div style="display:flex;gap:4px;margin-bottom:12px;color:var(--cyan);font-size:1.2rem">
-            ★★★★★
-          </div>
-          <p style="font-size:0.9rem;color:var(--text-light);margin-bottom:16px;line-height:1.7">
-            "Perdí mi trabajo y mi crédito hipotecario se volvió impagable. CeroDeuda reestructuró mi deuda y salvé mi casa. Profesionales y confiables."
-          </p>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem">JP</div>
-            <div><strong style="font-size:0.9rem">Jorge Pineda</strong><br><span style="font-size:0.8rem;color:var(--text-light)">Medellín</span></div>
-          </div>
+        <div class="testimonial animate__animated" data-animate data-delay="1">
+          <div class="testimonial__stars">★★★★★</div>
+          <p>"Pensé que iba a perder mi carro. Negociaron la deuda y me bajaron los intereses. Infinitas gracias."</p>
+          <div class="testimonial__author">Laura P. <span>Medellín</span></div>
         </div>
-        <div class="card fade-in delay-2" style="border-color:rgba(102,0,255,0.15)">
-          <div style="display:flex;gap:4px;margin-bottom:12px;color:var(--cyan);font-size:1.2rem">
-            ★★★★★
-          </div>
-          <p style="font-size:0.9rem;color:var(--text-light);margin-bottom:16px;line-height:1.7">
-            "Estaba reportada en Datacrédito por 4 años. No podía sacar ni un celular a cuotas. CeroDeuda limpió mi historial en 2 meses. Ahora tengo tarjeta nuevamente."
-          </p>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem">LG</div>
-            <div><strong style="font-size:0.9rem">Laura Gutiérrez</strong><br><span style="font-size:0.8rem;color:var(--text-light)">Cali</span></div>
-          </div>
+        <div class="testimonial animate__animated" data-animate data-delay="2">
+          <div class="testimonial__stars">★★★★★</div>
+          <p>"Estaba en Datacrédito por 8 millones de un préstamo. Pagué solo 3 millones y salí reportes. Increíble."</p>
+          <div class="testimonial__author">Andrés R. <span>Cali</span></div>
         </div>
       </div>
     </div>
@@ -243,157 +173,161 @@
 
   <!-- FAQ -->
   <section class="section" id="faq">
+    <div class="glow-purple" style="bottom:0;right:0"></div>
     <div class="container">
-      <h2 class="section__title fade-in">Preguntas <span>frecuentes</span></h2>
-      <p class="section__subtitle fade-in">Resolvemos tus dudas sobre el proceso de eliminación de deudas</p>
-      <div class="faq-grid">
-        <div class="faq-item fade-in">
-          <div class="faq-q">¿Es legal? <i class="fas fa-plus"></i></div>
-          <div class="faq-a">Sí, operamos bajo el marco legal colombiano. La negociación de deudas es una práctica legal respaldada por la Superintendencia Financiera y la Ley de Protección al Consumidor.</div>
+      <h2 class="section__title animate__animated" data-animate">Preguntas frecuentes</h2>
+      <p class="section__subtitle animate__animated" data-animate">Todo lo que necesitas saber antes de empezar</p>
+      <div class="faq">
+        <div class="faq__item animate__animated" data-animate>
+          <details>
+            <summary>¿El diagnóstico realmente es gratis?</summary>
+            <p>Sí, 100% gratis y sin compromiso. Te hacemos un análisis completo de tu situación financiera por WhatsApp. Si decides no continuar, no hay problema.</p>
+          </details>
         </div>
-        <div class="faq-item fade-in delay-1">
-          <div class="faq-q">¿Cuánto tiempo toma el proceso? <i class="fas fa-plus"></i></div>
-          <div class="faq-a">Depende del monto y tipo de deuda, pero en promedio entre 30 y 90 días hábiles. Te mantenemos informado de cada avance.</div>
+        <div class="faq__item animate__animated" data-animate data-delay="1">
+          <details>
+            <summary>¿Cuánto tiempo toma el proceso?</summary>
+            <p>Depende de tu situación, pero la mayoría de nuestros clientes ven resultados en 30 a 90 días. Las negociaciones con bancos suelen resolverse en 2 a 4 semanas.</p>
+          </details>
         </div>
-        <div class="faq-item fade-in delay-2">
-          <div class="faq-q">¿Qué pasa si no logran reducir mi deuda? <i class="fas fa-plus"></i></div>
-          <div class="faq-a">No pagas nada. Nuestro modelo es "no resultado, no cobro". Solo recibimos comisión cuando efectivamente logramos la reducción.</div>
+        <div class="faq__item animate__animated" data-animate data-delay="2">
+          <details>
+            <summary>¿Trabajan con cualquier banco de Colombia?</summary>
+            <p>Sí. Tenemos experiencia con Bancolombia, Davivienda, BBVA, Scotiabank Colpatria, Banco de Bogotá, AV Villas, Banco Popular, Itaú, y todos los bancos del país.</p>
+          </details>
         </div>
-        <div class="faq-item fade-in delay-3">
-          <div class="faq-q">¿Afecta mi historial crediticio? <i class="fas fa-plus"></i></div>
-          <div class="faq-a">Al contrario. Al negociar y liquidar tus deudas, tu historial en Datacrédito y Cifin mejora significativamente, permitiéndote acceder a nuevos créditos.</div>
+        <div class="faq__item animate__animated" data-animate data-delay="1">
+          <details>
+            <summary>¿Me pueden embargar durante el proceso?</summary>
+            <p>Te asesoramos legalmente para evitar embargos. Nuestro equipo jurídico te protege desde el primer día.</p>
+          </details>
         </div>
-        <div class="faq-item fade-in delay-4">
-          <div class="faq-q">¿De qué montos puedo negociar? <i class="fas fa-plus"></i></div>
-          <div class="faq-a">Desde $500.000 hasta $500 millones. Manejamos todo tipo de deudas con bancos, cooperativas, financieras y prestamistas.</div>
+        <div class="faq__item animate__animated" data-animate>
+          <details>
+            <summary>¿Cobran si no hay resultados?</summary>
+            <p>No. Solo cobramos cuando logramos resultados concretos. Tu satisfacción es nuestra prioridad.</p>
+          </details>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section" id="contacto">
+  <!-- CTA Final -->
+  <section class="section section--dark" style="text-align:center">
     <div class="container">
-      <div class="cta-section fade-in">
-        <h2>Último paso hacia tu <span class="text-gradient">libertad financiera</span></h2>
-        <p>No dejes que las deudas controlen tu vida. Un mensaje de WhatsApp es todo lo que necesitas para empezar.</p>
-        <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20eliminar%20mis%20deudas%20-%20CeroDeuda" class="btn btn--primary btn--large glow-purple" target="_blank">
-          <i class="fab fa-whatsapp"></i> Hablar con un asesor
-        </a>
-      </div>
+      <h2 class="section__title animate__animated" data-animate>Tu libertad financiera<br>empieza aquí</h2>
+      <p class="section__subtitle animate__animated" data-animate>Un mensaje de WhatsApp es todo lo que necesitas</p>
+      <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20mi%20diagn%C3%B3stico%20financiero%20gratis" class="btn btn--whatsapp btn--lg animate__animated animate__fadeInUp" target="_blank" rel="noopener" style="margin-top:20px">
+        <i class="fab fa-whatsapp"></i> Empezar diagnóstico gratis
+      </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <h4 style="font-size:1.2rem;font-family:var(--font-title)">Cero<span style="color:var(--cyan)">Deuda</span></h4>
-          <p style="color:var(--text-light);font-size:0.85rem;margin-top:8px;line-height:1.6">
-            Solución legal colombiana para la eliminación de deudas.<br>
-            Operamos en Bogotá, Medellín, Cali, Barranquilla y toda Colombia.
-          </p>
+          <div class="logo" style="font-size:1.5rem;margin-bottom:16px">Cero<span>Deuda</span></div>
+          <p style="color:#666;font-size:0.9rem;line-height:1.7">Transformamos tu vida financiera. Estrategia personalizada para colombianos que quieren salir de deudas y recuperar su tranquilidad.</p>
         </div>
         <div>
           <h4>Servicios</h4>
           <ul>
-            <li>Tarjetas de crédito</li>
-            <li>Créditos hipotecarios</li>
-            <li>Créditos vehiculares</li>
-            <li>Datacrédito / Cifin</li>
+            <li><a href="#servicios">Negociación bancos</a></li>
+            <li><a href="#servicios">Centrales de riesgo</a></li>
+            <li><a href="#servicios">Asesoría legal</a></li>
+            <li><a href="#servicios">Educación financiera</a></li>
           </ul>
         </div>
         <div>
           <h4>Contacto</h4>
           <ul>
+            <li>📍 Bogotá, Colombia</li>
             <li>📞 <a href="https://wa.me/573000000000">+57 300 000 0000</a></li>
             <li>📧 contacto@cerodeuda.com</li>
-            <li>📍 Bogotá, Colombia</li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
-        <p>© 2026 CeroDeuda Colombia. Todos los derechos reservados.</p>
+        <p>© 2026 CeroDeuda.com — Todos los derechos reservados</p>
       </div>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20eliminar%20mis%20deudas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a href="https://wa.me/573000000000?text=Quiero%20mi%20diagn%C3%B3stico%20financiero%20gratis" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <script src="js/main.js"></script>
-
-  <!-- P5.JS PARTICLE BACKGROUND -->
   <script>
+  // Scroll animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const els = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const delay = e.target.dataset.delay || 0;
+          e.target.classList.add('animate__fadeInUp');
+          e.target.style.animationDelay = delay * 0.15 + 's';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(el => observer.observe(el));
+  });
+
+  // p5.js ambient
   new p5((p) => {
     let particles = [];
-    const PURPLE = [102, 0, 255];
-    const CYAN = [0, 229, 255];
-
     p.setup = function() {
       let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
       canvas.parent('p5-bg');
       p.colorMode(p.RGB, 255);
       p.noStroke();
-
-      // Crear partículas
       for (let i = 0; i < 60; i++) {
         particles.push({
-          x: p.random(p.width),
-          y: p.random(p.height),
+          x: p.random(p.width), y: p.random(p.height),
           vx: 0, vy: 0,
-          size: p.random(1.5, 3.5),
-          alpha: p.random(0.01, 0.05),
-          hue: p.random() > 0.5 ? 'purple' : 'cyan'
+          size: p.random(1, 3),
+          alpha: p.random(0.03, 0.08),
+          color: p.random() > 0.5 ? [102, 0, 255] : [0, 229, 255]
         });
       }
     };
-
     p.draw = function() {
       p.clear();
-      let t = p.frameCount * 0.0003;
-
-      // Partículas
-      for (let pt of particles) {
-        let angle = p.noise(pt.x * 0.004, pt.y * 0.004, t) * p.TWO_PI * 3;
-        pt.vx += p.cos(angle) * 0.06;
-        pt.vy += p.sin(angle) * 0.06;
-        pt.vx *= 0.95;
-        pt.vy *= 0.95;
-        pt.x += pt.vx;
-        pt.y += pt.vy;
-
-        if (pt.x < 0) pt.x = p.width;
-        if (pt.x > p.width) pt.x = 0;
-        if (pt.y < 0) pt.y = p.height;
-        if (pt.y > p.height) pt.y = 0;
-
-        let color = pt.hue === 'purple' ? PURPLE : CYAN;
-        p.fill(color[0], color[1], color[2], pt.alpha * 255);
-        p.circle(pt.x, pt.y, pt.size);
-
-        // Conexiones entre partículas cercanas
-        for (let other of particles) {
-          let d = p.dist(pt.x, pt.y, other.x, other.y);
-          if (d < 120 && d > 0) {
-            let alpha = p.map(d, 0, 120, 0.015, 0);
-            if (alpha > 0) {
-              p.stroke(102, 0, 255, alpha * 255);
-              p.strokeWeight(0.5);
-              p.line(pt.x, pt.y, other.x, other.y);
-              p.noStroke();
-            }
+      let t = p.frameCount * 0.0005;
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+          if (d < 150) {
+            let alpha = p.map(d, 0, 150, 0.15, 0);
+            p.stroke(102, 0, 255, alpha * 50);
+            p.strokeWeight(0.5);
+            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
           }
         }
       }
+      p.noStroke();
+      for (let pt of particles) {
+        let angle = p.noise(pt.x * 0.005, pt.y * 0.005, t) * p.TWO_PI * 2;
+        pt.vx += p.cos(angle) * 0.06;
+        pt.vy += p.sin(angle) * 0.06;
+        pt.vx *= 0.96;
+        pt.vy *= 0.96;
+        pt.x += pt.vx;
+        pt.y += pt.vy;
+        if (pt.x < -20) pt.x = p.width + 20;
+        if (pt.x > p.width + 20) pt.x = -20;
+        if (pt.y < -20) pt.y = p.height + 20;
+        if (pt.y > p.height + 20) pt.y = -20;
+        p.fill(pt.color[0], pt.color[1], pt.color[2], pt.alpha * 255);
+        p.circle(pt.x, pt.y, pt.size);
+      }
     };
-
-    p.windowResized = function() {
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
-    };
+    p.windowResized = function() { p.resizeCanvas(p.windowWidth, p.windowHeight); };
   }, 'p5-bg');
   </script>
 </body>
