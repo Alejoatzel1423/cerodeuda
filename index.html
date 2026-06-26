@@ -3,334 +3,380 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CeroDeuda — Libera tu futuro financiero</title>
-  <meta name="description" content="Estrategia financiera para eliminar tus deudas en Colombia. Plan personalizado, asesoría uno a uno, resultados reales.">
+  <title>CeroDeuda — Elimina tus deudas en Colombia</title>
+  <meta name="description" content="Estrategia comprobada para eliminar tus deudas en Colombia. Asesoría personalizada, negociación con bancos y recuperación de tu historial crediticio.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💰</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <style>
-    @font-face {
-      font-family: 'Neuropolitical';
-      src: url('https://alejoatzel1423.github.io/alejandrosalamanca/fonts/neuropolitical.woff2') format('woff2');
-      font-display: swap;
+    .hero__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(102,0,255,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(0,229,255,0.1) 0%, transparent 60%);
+      z-index: -1;
     }
-    :root {
-      --primary: #6600FF;
-      --secondary: #00E5FF;
-      --primary-glow: rgba(102, 0, 255, 0.3);
-      --secondary-glow: rgba(0, 229, 255, 0.25);
-      --bg-dark: #0A0A0F;
-      --bg-card: rgba(18, 18, 30, 0.8);
-      --text: #F0F0F5;
-      --text-dim: rgba(240, 240, 245, 0.6);
+    .glow-line {
+      position: absolute;
+      height: 1px;
+      width: 300px;
+      background: linear-gradient(90deg, transparent, var(--purple), var(--cyan), transparent);
+      opacity: 0.3;
+      animation: glowLine 4s ease-in-out infinite;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text);
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    #p5-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-    h1, h2, h3, h4 { font-family: 'Neuropolitical', 'Montserrat', sans-serif; }
-
-    /* Header */
-    .header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      background: rgba(10, 10, 15, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(102, 0, 255, 0.15);
-    }
-    .header__inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1200px; margin: 0 auto; }
-    .logo { font-family: 'Neuropolitical', sans-serif; font-size: 22px; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
-    .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .nav { display: flex; gap: 32px; }
-    .nav a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s, text-shadow 0.3s; }
-    .nav a:hover { color: var(--secondary); text-shadow: 0 0 12px var(--secondary-glow); }
-
-    /* Hero */
-    .hero {
-      position: relative; z-index: 1; min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 100px 24px 60px;
-    }
-    .hero__content { max-width: 720px; text-align: center; }
-    .hero__badge {
-      display: inline-block; padding: 6px 18px; border-radius: 100px;
-      background: rgba(102, 0, 255, 0.15);
-      border: 1px solid rgba(102, 0, 255, 0.3);
-      font-size: 12px; color: var(--secondary); letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 24px;
-      animation: fadeIn 0.8s ease both;
-    }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 56px); line-height: 1.1;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease both 0.2s;
-    }
-    .hero h1 span { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { font-size: 16px; color: var(--text-dim); line-height: 1.7; margin-bottom: 32px; animation: fadeInUp 1s ease both 0.4s; }
-    .hero__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease both 0.6s; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
-      border-radius: 12px; font-size: 15px; font-weight: 600; font-family: 'Montserrat', sans-serif;
-      text-decoration: none; cursor: pointer; border: none; transition: all 0.3s;
-    }
-    .btn--primary {
-      background: linear-gradient(135deg, var(--primary), #8833FF);
-      color: white; box-shadow: 0 4px 24px var(--primary-glow);
-    }
-    .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(102, 0, 255, 0.5); }
-    .btn--outline {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .btn--outline:hover { border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 20px var(--secondary-glow); }
-    .btn--whatsapp { background: #25D366; color: white; }
-    .btn--whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); }
-
-    /* Stats */
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 600px; margin: 40px auto 0; animation: fadeInUp 1s ease both 0.8s; }
-    .stat { text-align: center; padding: 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid rgba(102, 0, 255, 0.1); }
-    .stat__number { font-family: 'Neuropolitical', sans-serif; font-size: 28px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .stat__label { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
-
-    /* Sections */
-    .section { position: relative; z-index: 1; padding: 80px 24px; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section__title { font-size: clamp(22px, 3.5vw, 36px); text-align: center; margin-bottom: 16px; }
-    .section__subtitle { font-size: 15px; color: var(--text-dim); text-align: center; margin-bottom: 48px; }
-
-    /* Services grid */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .service-card {
-      background: var(--bg-card); border-radius: 20px; padding: 32px;
-      border: 1px solid rgba(102, 0, 255, 0.1);
-      transition: all 0.4s;
-      backdrop-filter: blur(8px);
-    }
-    .service-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 12px 48px var(--primary-glow); }
-    .service-card__icon { font-size: 36px; margin-bottom: 16px; display: block; }
-    .service-card h3 { font-size: 18px; margin-bottom: 12px; }
-    .service-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
-
-    /* Scarcity bar */
-    .scarcity { max-width: 500px; margin: 40px auto 0; text-align: center; }
-    .scarcity__text { font-size: 13px; color: var(--secondary); font-weight: 600; margin-bottom: 8px; }
-    .scarcity__bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-    .scarcity__fill { height: 100%; width: 27%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 4px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-
-    /* Process */
-    .process { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .step { text-align: center; padding: 24px; position: relative; }
-    .step__number { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-family: 'Neuropolitical', sans-serif; font-size: 18px; }
-    .step h4 { font-size: 14px; margin-bottom: 8px; }
-    .step p { font-size: 13px; color: var(--text-dim); }
-
-    /* FAQ */
-    .faq { max-width: 700px; margin: 0 auto; }
-    .faq-item { margin-bottom: 12px; background: var(--bg-card); border-radius: 16px; border: 1px solid rgba(102, 0, 255, 0.08); overflow: hidden; transition: border-color 0.3s; }
-    .faq-item:hover { border-color: rgba(102, 0, 255, 0.2); }
-    .faq-q { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 14px; }
-    .faq-a { padding: 0 24px 18px; font-size: 14px; color: var(--text-dim); line-height: 1.6; display: none; }
-    .faq-item.open .faq-a { display: block; }
-
-    /* Footer */
-    .footer { position: relative; z-index: 1; border-top: 1px solid rgba(102, 0, 255, 0.1); padding: 40px 24px; }
-    .footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto; }
-    .footer h4 { font-size: 14px; margin-bottom: 12px; }
-    .footer ul { list-style: none; }
-    .footer li { font-size: 13px; color: var(--text-dim); margin-bottom: 8px; }
-    .footer a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
-    .footer a:hover { color: var(--secondary); }
-    .footer__bottom { text-align: center; padding-top: 32px; font-size: 12px; color: var(--text-dim); }
-
-    /* WhatsApp float */
-    .whatsapp-float {
-      position: fixed; bottom: 24px; right: 24px; z-index: 99;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #25D366; display: flex; align-items: center; justify-content: center;
-      font-size: 28px; text-decoration: none; color: white;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-      animation: fadeInUp 1s ease both 1s, pulse 2s infinite 2s;
-      transition: transform 0.3s;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); }
-
-    @media (max-width: 768px) {
-      .nav { display: none; }
-      .stats { grid-template-columns: 1fr; max-width: 280px; }
+    @keyframes glowLine {
+      0%, 100% { opacity: 0.1; transform: scaleX(0.5); }
+      50% { opacity: 0.5; transform: scaleX(1); }
     }
   </style>
 </head>
 <body>
-<div id="p5-bg"></div>
+  <div id="p5-bg"></div>
 
-<!-- Header -->
-<header class="header">
-  <div class="header__inner">
-    <a href="/" class="logo"><span class="logo-icon">$</span> Cero<span style="color:var(--secondary)">Deuda</span></a>
-    <nav class="nav">
-      <a href="#servicios">Servicios</a>
-      <a href="#proceso">Cómo funciona</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </div>
-</header>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="hero__content">
-    <div class="hero__badge">🔥 Solo 27% disponible en junio</div>
-    <h1>Tu camino hacia <span>cero deudas</span> empieza aquí</h1>
-    <p>Estrategia financiera personalizada para colombianos. Negociamos con tus acreedores, reestructuramos tus pagos y te damos un plan real para salir de deudas en 12-24 meses.</p>
-    <div class="hero__actions">
-      <a href="https://wa.me/573000000000?text=Quiero%20liberarme%20de%20deudas" class="btn btn--whatsapp" target="_blank" rel="noopener">💬 Empieza hoy</a>
-      <a href="#servicios" class="btn btn--outline">Ver servicios</a>
+  <header class="header">
+    <div class="header__inner">
+      <a href="/" class="logo animate__animated animate__fadeIn">Cero<span>Deuda</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      <nav class="nav" id="mainNav">
+        <ul class="nav__list">
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#casos">Casos de éxito</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacto" class="btn btn--primary" style="padding:10px 24px;font-size:13px">Comenzar</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="stat__number">$0</div><div class="stat__label">Pagado por clientes</div></div>
-      <div class="stat"><div class="stat__number">500+</div><div class="stat__label">Familias liberadas</div></div>
-      <div class="stat"><div class="stat__number">98%</div><div class="stat__label">Tasa de éxito</div></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div style="position:absolute;top:20%;left:10%;class=glow-line"></div>
+    <div style="position:absolute;bottom:30%;right:15%;class=glow-line" style="animation-delay:2s"></div>
+    <div class="hero__content">
+      <div class="hero__badge animate__animated animate__fadeInDown">🔥 Más de 1,200 colombianos ya salieron de deudas</div>
+      <h1 class="animate__animated animate__fadeInUp">Elimina tus deudas<br>y recupera tu <span class="text-gradient">paz financiera</span></h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">Asesoría personalizada para colombianos. Negociamos con tus acreedores, reducimos tu deuda hasta 70% y limpiamos tu historial crediticio.</p>
+      <div class="hero__cta">
+        <a href="#contacto" class="btn btn--primary btn--lg pulse-glow animate__animated animate__fadeInUp animate__delay-2s">
+          <i class="fas fa-phone-alt"></i> Consulta gratis
+        </a>
+        <a href="#como-funciona" class="btn btn--secondary btn--lg animate__animated animate__fadeInUp animate__delay-2s">
+          <i class="fas fa-play-circle"></i> Ver cómo funciona
+        </a>
+      </div>
     </div>
-    <div class="scarcity">
-      <div class="scarcity__text">⚠️ Cupos limitados — 73% ya asignados este mes</div>
-      <div class="scarcity__bar"><div class="scarcity__fill"></div></div>
+  </section>
+
+  <section class="section" id="servicios">
+    <div class="container">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Nuestros servicios</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Soluciones diseñadas para tu situación financiera</p>
+      <div class="features-grid">
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.1s">
+          <span class="card__icon">🏦</span>
+          <h3>Negociación con bancos</h3>
+          <p>Gestionamos acuerdos de pago con entidades financieras colombianas. Reducimos tu deuda hasta un 70% y eliminamos intereses moratorios.</p>
+        </div>
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">
+          <span class="card__icon">📋</span>
+          <h3>Limpieza de historial</h3>
+          <p>Eliminamos reportes negativos en Datacrédito y TransUnion. Recuperas tu capacidad de acceso a crédito en 3 a 6 meses.</p>
+        </div>
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.3s">
+          <span class="card__icon">⚖️</span>
+          <h3>Asesoría legal</h3>
+          <p>Te representamos ante cobradores y despachos jurídicos. Detenemos embargos, demandas y llamadas de acoso.</p>
+        </div>
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.4s">
+          <span class="card__icon">📈</span>
+          <h3>Educación financiera</h3>
+          <p>Aprende a administrar tu dinero, crear un presupuesto y evitar caer en deudas nuevamente. Incluye herramientas digitales.</p>
+        </div>
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.5s">
+          <span class="card__icon">🤝</span>
+          <h3>Consolidación de deudas</h3>
+          <p>Unificamos todas tus deudas en un solo pago mensual con tasa preferencial. Hasta 60% menos de cuota mensual.</p>
+        </div>
+        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.6s">
+          <span class="card__icon">🏠</span>
+          <h3>Protección de vivienda</h3>
+          <p>Evitamos remates y embargos de tu casa o apartamento. Negociamos soluciones que protejan tu patrimonio familiar.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Servicios -->
-<section class="section" id="servicios">
-  <div class="container">
-    <h2 class="section__title">Servicios</h2>
-    <p class="section__subtitle">Soluciones reales para cada situación financiera</p>
-    <div class="services-grid">
-      <div class="service-card"><span class="service-card__icon">📋</span><h3>Diagnóstico Gratuito</h3><p>Analizamos tu situación financiera actual, identificamos todas tus deudas y creamos un plan de acción sin costo.</p></div>
-      <div class="service-card"><span class="service-card__icon">🤝</span><h3>Negociación con Acreedores</h3><p>Gestionamos descuentos de hasta el 70% con bancos y entidades financieras colombianas.</p></div>
-      <div class="service-card"><span class="service-card__icon">📊</span><h3>Plan de Pagos</h3><p>Diseñamos un calendario de pagos realista que se ajusta a tu capacidad financiera mensual.</p></div>
-      <div class="service-card"><span class="service-card__icon">🛡️</span><h3>Protección Legal</h3><p>Te asesoramos sobre tus derechos como deudor y te protegemos de cobros indebidos o acoso.</p></div>
-      <div class="service-card"><span class="service-card__icon">📈</span><h3>Educación Financiera</h3><p>Aprende a manejar tu dinero, crear presupuestos y evitar caer en deudas nuevamente.</p></div>
-      <div class="service-card"><span class="service-card__icon">🏦</span><h3>Liberación de Hipoteca</h3><p>Reestructuración de deudas hipotecarias para salvar tu vivienda.</p></div>
+  <section class="section" id="como-funciona" style="background: var(--dark-surface);">
+    <div class="container">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Cómo funciona</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">En 4 pasos simples, recuperas tu tranquilidad financiera</p>
+      <div class="steps">
+        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.1s">
+          <div class="step__num">1</div>
+          <div>
+            <h4>Consulta gratis</h4>
+            <p>Agenda una llamada de 15 minutos sin costo. Analizamos tu situación y te explicamos todas las opciones disponibles.</p>
+          </div>
+        </div>
+        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.2s">
+          <div class="step__num">2</div>
+          <div>
+            <h4>Diagnóstico financiero</h4>
+            <p>Revisamos tus deudas, ingresos y activos. Creamos un plan personalizado con metas claras y fechas realistas.</p>
+          </div>
+        </div>
+        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.3s">
+          <div class="step__num">3</div>
+          <div>
+            <h4>Negociación y ejecución</h4>
+            <p>Nosotros hablamos con tus acreedores. Gestionamos acuerdos, reducciones de deuda y planes de pago a tu medida.</p>
+          </div>
+        </div>
+        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.4s">
+          <div class="step__num">4</div>
+          <div>
+            <h4>¡Deuda cero!</h4>
+            <p>Recibes constancia de pago, limpiamos tu historial y te entregamos un plan financiero para mantenerte libre de deudas.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Proceso -->
-<section class="section" id="proceso" style="background: radial-gradient(ellipse at center, rgba(102,0,255,0.05), transparent);">
-  <div class="container">
-    <h2 class="section__title">Cómo funciona</h2>
-    <p class="section__subtitle">4 pasos para recuperar tu libertad financiera</p>
-    <div class="process">
-      <div class="step"><div class="step__number">1</div><h4>Diagnóstico</h4><p>Agenda una llamada gratuita de 30 minutos para evaluar tu caso.</p></div>
-      <div class="step"><div class="step__number">2</div><h4>Estrategia</h4><p>Diseñamos un plan personalizado de negociación y pagos.</p></div>
-      <div class="step"><div class="step__number">3</div><h4>Ejecución</h4><p>Negociamos con tus acreedores y gestionamos todo el proceso.</p></div>
-      <div class="step"><div class="step__number">4</div><h4>Libertad</h4><p>Recibes tu certificado CeroDeuda y el acompañamiento post-liberación.</p></div>
+  <section class="section" id="estadisticas">
+    <div class="container">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Resultados reales</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Colombianos que recuperaron su libertad financiera</p>
+      <div class="stats">
+        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.1s">
+          <div class="stat__num">+1,200</div>
+          <div class="stat__label">Clientes atendidos</div>
+        </div>
+        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.2s">
+          <div class="stat__num">70%</div>
+          <div class="stat__label">Reducción promedio de deuda</div>
+        </div>
+        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.3s">
+          <div class="stat__num">95%</div>
+          <div class="stat__label">Casos exitosos</div>
+        </div>
+        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.4s">
+          <div class="stat__num">$2.5B</div>
+          <div class="stat__label">En deudas negociadas</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="container">
-    <h2 class="section__title">Preguntas frecuentes</h2>
-    <p class="section__subtitle">Todo lo que necesitas saber antes de empezar</p>
-    <div class="faq">
-      <div class="faq-item open"><div class="faq-q">¿Realmente puedo salir de deudas? <span>▼</span></div><div class="faq-a">Sí. Más de 500 familias colombianas lo han logrado con nuestro método. Negociamos descuentos de hasta el 70% y creamos un plan realista.</div></div>
-      <div class="faq-item"><div class="faq-q">¿Cuánto cuesta el diagnóstico inicial? <span>▼</span></div><div class="faq-a">Completamente gratis. La primera asesoría no tiene ningún costo ni compromiso.</div></div>
-      <div class="faq-item"><div class="faq-q">¿Trabajan con cualquier banco? <span>▼</span></div><div class="faq-a">Trabajamos con todas las entidades financieras de Colombia: Bancolombia, Davivienda, BBVA, Scotiabank, Falabella, Banco de Bogotá, y más.</div></div>
-      <div class="faq-item"><div class="faq-q">¿Esto afecta mi historial crediticio? <span>▼</span></div><div class="faq-a">Nuestro objetivo es regularizar tu situación. Una vez finalizado el plan, trabajamos contigo para reconstruir tu historial.</div></div>
+  <section class="section swiper-section" id="casos" style="background: var(--dark-surface);">
+    <div class="container">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Casos de éxito</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Historias reales de colombianos como tú</p>
+      <div class="swiper testimonialSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="card" style="text-align:left">
+              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Tenía más de 15 millones en deudas de tarjetas y un crédito hipotecario al día. En 4 meses negociaron todo. Pagué solo 4.5 millones. Ahora puedo dormir tranquila."</p>
+              <p style="font-weight:700;font-size:14px">— María C., Bogotá</p>
+              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card" style="text-align:left">
+              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Perdí mi trabajo y las deudas me ahogaban. Los abogados de CeroDeuda detuvieron un embargo y negociaron un acuerdo que podía pagar. Infinitas gracias."</p>
+              <p style="font-weight:700;font-size:14px">— Carlos M., Medellín</p>
+              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card" style="text-align:left">
+              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Estaba reportado en Datacrédito por 3 créditos. CeroDeuda limpió todo en 5 meses. Hoy tengo mi primer crédito aprobado después de años."</p>
+              <p style="font-weight:700;font-size:14px">— Andrea R., Cali</p>
+              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA Final -->
-<section class="section" id="contacto" style="text-align:center">
-  <div class="container">
-    <h2 class="section__title">¿Listo para liberarte?</h2>
-    <p class="section__subtitle">Tu primera asesoría es gratis. Sin compromiso.</p>
-    <a href="https://wa.me/573000000000?text=Quiero%20mi%20diagn%C3%B3stico%20gratuito%20CeroDeuda" class="btn btn--whatsapp" style="font-size:18px;padding:18px 40px" target="_blank" rel="noopener">💬 Quiero mi diagnóstico gratis</a>
-  </div>
-</section>
+  <section class="section" id="faq">
+    <div class="container" style="max-width:700px">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Preguntas frecuentes</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Todo lo que necesitas saber antes de empezar</p>
+      <div class="card" style="margin-bottom:16px">
+        <h4 style="margin-bottom:8px">¿Es gratis la primera consulta?</h4>
+        <p style="color:var(--text-secondary);font-size:14px">Sí. Agendas sin costo ni compromiso. En 15 minutos te explicamos todo el proceso y te damos un estimado de cuánto podrías ahorrar.</p>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <h4 style="margin-bottom:8px">¿Funciona si estoy reportado en Datacrédito?</h4>
+        <p style="color:var(--text-secondary);font-size:14px">Sí, funciona mejor si ya estás reportado. Podemos negociar desde una posición más fuerte y eliminar los reportos negativos.</p>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <h4 style="margin-bottom:8px">¿Cuánto tiempo toma el proceso?</h4>
+        <p style="color:var(--text-secondary);font-size:14px">En promedio 3 a 6 meses, dependiendo del número de deudas y la disposición de los acreedores a negociar.</p>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <h4 style="margin-bottom:8px">¿Atienden en toda Colombia?</h4>
+        <p style="color:var(--text-secondary);font-size:14px">Sí. Todo el proceso es virtual. Nos reunimos por videollamada y gestionamos todo digitalmente.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer__grid">
-    <div><h4>CeroDeuda Colombia</h4><ul><li>📍 Bogotá, Colombia</li><li>📞 +57 300 000 0000</li><li>📧 hola@cerodeuda.com</li></ul></div>
-    <div><h4>Servicios</h4><ul><li>Diagnóstico gratuito</li><li>Negociación con bancos</li><li>Plan de pagos</li><li>Educación financiera</li></ul></div>
-    <div><h4>Enlaces</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://wa.me/573000000000">WhatsApp</a></li></ul></div>
-  </div>
-  <div class="footer__bottom"><p>© 2026 CeroDeuda Colombia. Todos los derechos reservados.</p></div>
-</footer>
+  <section class="section" id="contacto" style="background: var(--dark-surface);">
+    <div class="container" style="max-width:500px">
+      <h2 class="section__title animate__animated" data-animate="fadeInUp">Recupera tu paz financiera</h2>
+      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Agenda tu consulta gratuita de 15 minutos</p>
 
-<a href="https://wa.me/573000000000?text=Quiero%20mi%20diagn%C3%B3stico%20gratuito%20CeroDeuda" class="whatsapp-float" target="_blank" rel="noopener">💬</a>
+      <div class="scarcity animate__animated" data-animate="fadeInUp" data-wow-delay="0.3s">
+        <p style="font-size:13px;color:var(--text-secondary)">Cupos disponibles esta semana</p>
+        <div class="scarcity__bar">
+          <div class="scarcity__fill" style="width:27%"></div>
+        </div>
+        <div class="scarcity__text">Solo quedan <strong style="color:var(--cyan)">13</strong> de 50 cupos</div>
+      </div>
 
-<script>
-  // FAQ toggle
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
-  });
-  // Mobile menu
-  document.querySelector('.menu-toggle')?.addEventListener('click', () => {
-    document.querySelector('.nav').classList.toggle('open');
-  });
-</script>
-<script>
-new p5(p => {
-  let particles = [];
-  p.setup = () => {
-    let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-    canvas.parent('p5-bg');
-    p.colorMode(p.RGB, 255);
-    p.noStroke();
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: p.random(p.width), y: p.random(p.height),
-        vx: 0, vy: 0,
-        size: p.random(1.5, 3.5),
-        alpha: p.random(0.02, 0.07),
-        phase: p.random(p.TWO_PI)
+      <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.4s" style="margin-top:32px">
+        <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20mi%20consulta%20gratuita%20de%20deudas" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;margin-bottom:12px" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Consulta gratis por WhatsApp
+        </a>
+        <p style="text-align:center;font-size:13px;color:var(--text-secondary)">📞 También al <a href="tel:+573000000000" style="color:var(--cyan)">+57 300 000 0000</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4>CeroDeuda</h4>
+          <ul>
+            <li>📍 Bogotá, Colombia</li>
+            <li>📞 <a href="https://wa.me/573000000000">+57 300 000 0000</a></li>
+            <li>📧 hola@cerodeuda.com.co</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Negociación</a></li>
+            <li><a href="#servicios">Datacrédito</a></li>
+            <li><a href="#servicios">Asesoría legal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#casos">Casos de éxito</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 CeroDeuda Colombia. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20mi%20consulta%20gratuita%20de%20deudas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+  // Scroll Reveal with IntersectionObserver
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate__animated', 'animate__' + entry.target.dataset.animate);
+          entry.target.style.visibility = 'visible';
+          observer.unobserve(entry.target);
+        }
       });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      el.style.visibility = 'hidden';
+      observer.observe(el);
+    });
+  });
+
+  // Menu toggle
+  document.getElementById('menuToggle')?.addEventListener('click', () => {
+    document.getElementById('mainNav').classList.toggle('open');
+  });
+
+  // Swiper
+  new Swiper('.testimonialSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
     }
-  };
-  p.draw = () => {
-    p.clear();
-    let t = p.frameCount * 0.0004;
-    for (let i = 0; i < particles.length; i++) {
-      let pt = particles[i];
-      let angle = p.noise(pt.x * 0.004, pt.y * 0.004, t + pt.phase) * p.TWO_PI * 3;
-      pt.vx += p.cos(angle) * 0.06; pt.vy += p.sin(angle) * 0.06;
-      pt.vx *= 0.95; pt.vy *= 0.95;
-      pt.x += pt.vx; pt.y += pt.vy;
-      if (pt.x < 0) pt.x = p.width; if (pt.x > p.width) pt.x = 0;
-      if (pt.y < 0) pt.y = p.height; if (pt.y > p.height) pt.y = 0;
+  });
 
-      // Purple glow particles
-      p.fill(102, 0, 255, pt.alpha * 200);
-      p.circle(pt.x, pt.y, pt.size);
-
+  // P5 particles with connections
+  new p5((p) => {
+    let particles = [];
+    p.setup = function() {
+      let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+      canvas.parent('p5-bg');
+      p.colorMode(p.RGB, 255);
+      p.noStroke();
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x: p.random(p.width), y: p.random(p.height),
+          vx: 0, vy: 0,
+          size: p.random(2, 5),
+          alpha: p.random(0.03, 0.08)
+        });
+      }
+    };
+    p.draw = function() {
+      p.clear();
+      let t = p.frameCount * 0.0003;
+      for (let pt of particles) {
+        let angle = p.noise(pt.x * 0.003, pt.y * 0.003, t) * p.TWO_PI * 2;
+        pt.vx += p.cos(angle) * 0.1; pt.vy += p.sin(angle) * 0.1;
+        pt.vx *= 0.95; pt.vy *= 0.95;
+        pt.x += pt.vx; pt.y += pt.vy;
+        if (pt.x < 0) pt.x = p.width; if (pt.x > p.width) pt.x = 0;
+        if (pt.y < 0) pt.y = p.height; if (pt.y > p.height) pt.y = 0;
+        p.fill(102, 0, 255, pt.alpha * 255);
+        p.circle(pt.x, pt.y, pt.size);
+      }
       // Draw connections
-      for (let j = i + 1; j < particles.length; j++) {
-        let p2 = particles[j];
-        let d = p.dist(pt.x, pt.y, p2.x, p2.y);
-        if (d < 120) {
-          let alphaConn = p.map(d, 0, 120, 0.015, 0);
-          p.stroke(0, 229, 255, alphaConn * 255);
-          p.strokeWeight(0.5);
-          p.line(pt.x, pt.y, p2.x, p2.y);
-          p.noStroke();
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+          if (d < 120) {
+            let a = p.map(d, 0, 120, 0.06, 0);
+            p.stroke(0, 229, 255, a * 255);
+            p.strokeWeight(0.5);
+            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+            p.noStroke();
+          }
         }
       }
-    }
-  };
-  p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight);
-});
-</script>
+    };
+    p.windowResized = function() { p.resizeCanvas(p.windowWidth, p.windowHeight); };
+  }, 'p5-bg');
+  </script>
 </body>
 </html>
