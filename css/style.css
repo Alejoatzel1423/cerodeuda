@@ -4,11 +4,6 @@
   src: url('https://raw.githubusercontent.com/nickelodeondev/Neuropolitical/main/neuropolitical.ttf') format('truetype');
 }
 
-/* ===== Tailwind base ===== */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 /* ===== CSS Variables ===== */
 :root {
   --purple: #6600FF;
