@@ -1,382 +1,394 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CeroDeuda — Elimina tus deudas en Colombia</title>
-  <meta name="description" content="Estrategia comprobada para eliminar tus deudas en Colombia. Asesoría personalizada, negociación con bancos y recuperación de tu historial crediticio.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>💰</text></svg>">
+  <title>CeroDeuda — Libertad Financiera Ahora</title>
+  <meta name="description" content="Elimina tus deudas en Colombia con nuestro método 100% digital. Resultados comprobados en 90 días.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <style>
-    .hero__overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at 30% 50%, rgba(102,0,255,0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 50%, rgba(0,229,255,0.1) 0%, transparent 60%);
-      z-index: -1;
-    }
-    .glow-line {
-      position: absolute;
-      height: 1px;
-      width: 300px;
-      background: linear-gradient(90deg, transparent, var(--purple), var(--cyan), transparent);
-      opacity: 0.3;
-      animation: glowLine 4s ease-in-out infinite;
-    }
-    @keyframes glowLine {
-      0%, 100% { opacity: 0.1; transform: scaleX(0.5); }
-      50% { opacity: 0.5; transform: scaleX(1); }
-    }
-  </style>
 </head>
 <body>
-  <div id="p5-bg"></div>
+  <!-- Three.js Canvas Background -->
+  <div id="three-canvas"></div>
 
-  <header class="header">
-    <div class="header__inner">
-      <a href="/" class="logo animate__animated animate__fadeIn">Cero<span>Deuda</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
-      <nav class="nav" id="mainNav">
-        <ul class="nav__list">
-          <li><a href="#como-funciona">Cómo funciona</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#casos">Casos de éxito</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contacto" class="btn btn--primary" style="padding:10px 24px;font-size:13px">Comenzar</a></li>
+  <!-- Lottie Background (hidden loader) -->
+  <div id="lottie-bg" style="display:none;"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="container text-center position-relative">
+      <div class="gsap-hero">
+        <p class="text-uppercase mb-3" style="letter-spacing:6px;font-size:0.85rem;color:var(--cyan);">
+          ⚡ Método 100% Digital
+        </p>
+        <h1 class="gsap-title">
+          <span class="d-block">¿Deudas?</span>
+          <span class="d-block gradient-text">Las Eliminamos</span>
+        </h1>
+        <p class="gsap-sub mx-auto" style="max-width:600px;color:rgba(255,255,255,0.6);font-size:1.15rem;">
+          Más de <strong style="color:var(--cyan);">2,847 colombianos</strong> ya recuperaron su libertad financiera 
+          con nuestro método. Sin papeleos. Sin abogados. 100% online.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap mt-4 gsap-btns">
+          <a href="https://wa.me/573000000000?text=Quiero%20eliminar%20mis%20deudas" class="glow-btn glow-btn--primary" target="_blank">
+            🚀 Quiero empezar ahora
+          </a>
+          <a href="#como-funciona" class="glow-btn glow-btn--secondary">
+            Ver cómo funciona
+          </a>
+        </div>
+      </div>
+
+      <!-- Scarcity Bar -->
+      <div class="mt-5 gsap-scarcity animate__animated" style="max-width:500px;margin-left:auto;margin-right:auto;">
+        <div class="d-flex justify-content-between mb-2" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+          <span>🟢 Cupos disponibles hoy</span>
+          <span class="text-warning fw-bold" id="cupos-disponibles">27</span>
+        </div>
+        <div class="progress" style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" 
+               style="width:27%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:3px;"></div>
+        </div>
+        <p class="mt-2" style="font-size:0.8rem;color:rgba(255,255,255,0.3);">
+          ✋ 173 personas están viendo esto ahora
+        </p>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse"></div>
+      <span>Descubre cómo</span>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="section" id="stats">
+    <div class="stats-grid" data-aos="fade-up" data-aos-duration="1000">
+      <div class="stat-card"> <div class="stat-number countup" data-target="2847">0</div> <div class="stat-label">Clientes satisfechos</div> </div>
+      <div class="stat-card"> <div class="stat-number countup" data-target="97">0</div> <div class="stat-label">% de efectividad</div> </div>
+      <div class="stat-card"> <div class="stat-number countup" data-target="90">0</div> <div class="stat-label">Días para resultados</div> </div>
+      <div class="stat-card"> <div class="stat-number countup" data-target="12">0</div> <div class="stat-label">Años de experiencia</div> </div>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO FUNCIONA ===== -->
+  <section class="section" id="como-funciona">
+    <h2 data-aos="fade-up">⚡ ¿Cómo funciona?</h2>
+    <div class="row g-4 mt-3">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-3d"> <span style="font-size:3rem;display:block;margin-bottom:1rem;">1️⃣</span>
+          <h3>Cuéntanos tu caso</h3>
+          <p>Dinos cuánto debes y a quién. Analizamos tu situación sin compromiso.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-3d"> <span style="font-size:3rem;display:block;margin-bottom:1rem;">2️⃣</span>
+          <h3>Recibe tu plan</h3>
+          <p>Te enviamos una estrategia personalizada para reducir tu deuda hasta un 70%.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-3d"> <span style="font-size:3rem;display:block;margin-bottom:1rem;">3️⃣</span>
+          <h3>Celebra tu libertad</h3>
+          <p>Sin deudas. Sin estrés. Sin llamadas de cobranza. Vida nueva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIOS (Splide Carousel) ===== -->
+  <section class="section" id="testimonios">
+    <h2 data-aos="fade-up">💬 Lo que dicen nuestros clientes</h2>
+    <div class="splide" id="testimonios-carousel" data-aos="fade-up">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <p style="font-size:2.5rem;margin-bottom:1rem;">⭐</p>
+            <h3>María F., Bogotá</h3>
+            <p style="font-size:0.9rem;line-height:1.6;">"Debía $8 millones en tres tarjetas. En 4 meses pagué solo $3.2 millones y cerré todo. Cambió mi vida."</p>
+          </li>
+          <li class="splide__slide">
+            <p style="font-size:2.5rem;margin-bottom:1rem;">⭐⭐</p>
+            <h3>Carlos R., Medellín</h3>
+            <p style="font-size:0.9rem;line-height:1.6;">"Intenté de todo antes. Esto fue lo único que funcionó. Ahora hasta ahorro."</p>
+          </li>
+          <li class="splide__slide">
+            <p style="font-size:2.5rem;margin-bottom:1rem;">⭐⭐⭐</p>
+            <h3>Andrea M., Cali</h3>
+            <p style="font-size:0.9rem;line-height:1.6;">"Tenía embargo. En 60 días mi deuda pasó de $25M a $8M. Infinitas gracias."</p>
+          </li>
+          <li class="splide__slide">
+            <p style="font-size:2.5rem;margin-bottom:1rem;">⭐⭐⭐⭐</p>
+            <h3>Jorge L., Barranquilla</h3>
+            <p style="font-size:0.9rem;line-height:1.6;">"Creí que iba a perder mi casa. Hoy duermo tranquilo. 100% recomendado."</p>
+          </li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero__overlay"></div>
-    <div style="position:absolute;top:20%;left:10%;class=glow-line"></div>
-    <div style="position:absolute;bottom:30%;right:15%;class=glow-line" style="animation-delay:2s"></div>
-    <div class="hero__content">
-      <div class="hero__badge animate__animated animate__fadeInDown">🔥 Más de 1,200 colombianos ya salieron de deudas</div>
-      <h1 class="animate__animated animate__fadeInUp">Elimina tus deudas<br>y recupera tu <span class="text-gradient">paz financiera</span></h1>
-      <p class="animate__animated animate__fadeInUp animate__delay-1s">Asesoría personalizada para colombianos. Negociamos con tus acreedores, reducimos tu deuda hasta 70% y limpiamos tu historial crediticio.</p>
-      <div class="hero__cta">
-        <a href="#contacto" class="btn btn--primary btn--lg pulse-glow animate__animated animate__fadeInUp animate__delay-2s">
-          <i class="fas fa-phone-alt"></i> Consulta gratis
-        </a>
-        <a href="#como-funciona" class="btn btn--secondary btn--lg animate__animated animate__fadeInUp animate__delay-2s">
-          <i class="fas fa-play-circle"></i> Ver cómo funciona
-        </a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="servicios">
-    <div class="container">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Nuestros servicios</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Soluciones diseñadas para tu situación financiera</p>
-      <div class="features-grid">
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.1s">
-          <span class="card__icon">🏦</span>
-          <h3>Negociación con bancos</h3>
-          <p>Gestionamos acuerdos de pago con entidades financieras colombianas. Reducimos tu deuda hasta un 70% y eliminamos intereses moratorios.</p>
-        </div>
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">
-          <span class="card__icon">📋</span>
-          <h3>Limpieza de historial</h3>
-          <p>Eliminamos reportes negativos en Datacrédito y TransUnion. Recuperas tu capacidad de acceso a crédito en 3 a 6 meses.</p>
-        </div>
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.3s">
-          <span class="card__icon">⚖️</span>
-          <h3>Asesoría legal</h3>
-          <p>Te representamos ante cobradores y despachos jurídicos. Detenemos embargos, demandas y llamadas de acoso.</p>
-        </div>
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.4s">
-          <span class="card__icon">📈</span>
-          <h3>Educación financiera</h3>
-          <p>Aprende a administrar tu dinero, crear un presupuesto y evitar caer en deudas nuevamente. Incluye herramientas digitales.</p>
-        </div>
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.5s">
-          <span class="card__icon">🤝</span>
-          <h3>Consolidación de deudas</h3>
-          <p>Unificamos todas tus deudas en un solo pago mensual con tasa preferencial. Hasta 60% menos de cuota mensual.</p>
-        </div>
-        <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.6s">
-          <span class="card__icon">🏠</span>
-          <h3>Protección de vivienda</h3>
-          <p>Evitamos remates y embargos de tu casa o apartamento. Negociamos soluciones que protejan tu patrimonio familiar.</p>
-        </div>
-      </div>
+  <!-- ===== PROGRESS BARS ===== -->
+  <section class="section" id="resultados">
+    <h2 data-aos="fade-up">📊 Resultados promedio</h2>
+    <div class="progress-container" data-aos="fade-up">
+      <div class="progress-item"> <div class="label"><span>Reducción de deuda</span><span>72%</span></div> <div class="progress-bar"><div class="progress-fill" data-width="72"></div></div> </div>
+      <div class="progress-item"> <div class="label"><span>Tiempo promedio</span><span>90 días</span></div> <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div> </div>
+      <div class="progress-item"> <div class="label"><span>Clientes que repiten</span><span>94%</span></div> <div class="progress-bar"><div class="progress-fill" data-width="94"></div></div> </div>
+      <div class="progress-item"> <div class="label"><span>Satisfacción general</span><span>98%</span></div> <div class="progress-bar"><div class="progress-fill" data-width="98"></div></div> </div>
     </div>
   </section>
 
-  <section class="section" id="como-funciona" style="background: var(--dark-surface);">
-    <div class="container">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Cómo funciona</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">En 4 pasos simples, recuperas tu tranquilidad financiera</p>
-      <div class="steps">
-        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.1s">
-          <div class="step__num">1</div>
-          <div>
-            <h4>Consulta gratis</h4>
-            <p>Agenda una llamada de 15 minutos sin costo. Analizamos tu situación y te explicamos todas las opciones disponibles.</p>
-          </div>
-        </div>
-        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.2s">
-          <div class="step__num">2</div>
-          <div>
-            <h4>Diagnóstico financiero</h4>
-            <p>Revisamos tus deudas, ingresos y activos. Creamos un plan personalizado con metas claras y fechas realistas.</p>
-          </div>
-        </div>
-        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.3s">
-          <div class="step__num">3</div>
-          <div>
-            <h4>Negociación y ejecución</h4>
-            <p>Nosotros hablamos con tus acreedores. Gestionamos acuerdos, reducciones de deuda y planes de pago a tu medida.</p>
-          </div>
-        </div>
-        <div class="step animate__animated" data-animate="fadeInRight" data-wow-delay="0.4s">
-          <div class="step__num">4</div>
-          <div>
-            <h4>¡Deuda cero!</h4>
-            <p>Recibes constancia de pago, limpiamos tu historial y te entregamos un plan financiero para mantenerte libre de deudas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="estadisticas">
-    <div class="container">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Resultados reales</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Colombianos que recuperaron su libertad financiera</p>
-      <div class="stats">
-        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.1s">
-          <div class="stat__num">+1,200</div>
-          <div class="stat__label">Clientes atendidos</div>
-        </div>
-        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.2s">
-          <div class="stat__num">70%</div>
-          <div class="stat__label">Reducción promedio de deuda</div>
-        </div>
-        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.3s">
-          <div class="stat__num">95%</div>
-          <div class="stat__label">Casos exitosos</div>
-        </div>
-        <div class="stat animate__animated" data-animate="zoomIn" data-wow-delay="0.4s">
-          <div class="stat__num">$2.5B</div>
-          <div class="stat__label">En deudas negociadas</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section swiper-section" id="casos" style="background: var(--dark-surface);">
-    <div class="container">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Casos de éxito</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Historias reales de colombianos como tú</p>
-      <div class="swiper testimonialSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card" style="text-align:left">
-              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Tenía más de 15 millones en deudas de tarjetas y un crédito hipotecario al día. En 4 meses negociaron todo. Pagué solo 4.5 millones. Ahora puedo dormir tranquila."</p>
-              <p style="font-weight:700;font-size:14px">— María C., Bogotá</p>
-              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card" style="text-align:left">
-              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Perdí mi trabajo y las deudas me ahogaban. Los abogados de CeroDeuda detuvieron un embargo y negociaron un acuerdo que podía pagar. Infinitas gracias."</p>
-              <p style="font-weight:700;font-size:14px">— Carlos M., Medellín</p>
-              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card" style="text-align:left">
-              <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px">"Estaba reportado en Datacrédito por 3 créditos. CeroDeuda limpió todo en 5 meses. Hoy tengo mi primer crédito aprobado después de años."</p>
-              <p style="font-weight:700;font-size:14px">— Andrea R., Cali</p>
-              <p style="font-size:12px;color:var(--cyan)">⭐ ⭐ ⭐ ⭐ ⭐</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== FAQ ===== -->
   <section class="section" id="faq">
-    <div class="container" style="max-width:700px">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Preguntas frecuentes</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Todo lo que necesitas saber antes de empezar</p>
-      <div class="card" style="margin-bottom:16px">
-        <h4 style="margin-bottom:8px">¿Es gratis la primera consulta?</h4>
-        <p style="color:var(--text-secondary);font-size:14px">Sí. Agendas sin costo ni compromiso. En 15 minutos te explicamos todo el proceso y te damos un estimado de cuánto podrías ahorrar.</p>
+    <h2 data-aos="fade-up">❓ Preguntas frecuentes</h2>
+    <div class="accordion mt-4" id="faqAccordion" data-aos="fade-up">
+      <div class="accordion-item" style="background:var(--glass);border:1px solid rgba(102,0,255,0.2);margin-bottom:12px;border-radius:12px;">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" style="background:transparent;color:#fff;box-shadow:none;">¿Esto es legal?</button></h3>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body" style="color:rgba(255,255,255,0.6);">Sí. Operamos bajo la ley colombiana de insolvencia económica. Todo es completamente legal y transparente.</div></div>
       </div>
-      <div class="card" style="margin-bottom:16px">
-        <h4 style="margin-bottom:8px">¿Funciona si estoy reportado en Datacrédito?</h4>
-        <p style="color:var(--text-secondary);font-size:14px">Sí, funciona mejor si ya estás reportado. Podemos negociar desde una posición más fuerte y eliminar los reportos negativos.</p>
+      <div class="accordion-item" style="background:var(--glass);border:1px solid rgba(102,0,255,0.2);margin-bottom:12px;border-radius:12px;">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" style="background:transparent;color:#fff;box-shadow:none;">¿Afecta mi historial crediticio?</button></h3>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body" style="color:rgba(255,255,255,0.6);">Temporalmente sí, pero al salir de deudas puedes reconstruir tu historial en menos de 6 meses.</div></div>
       </div>
-      <div class="card" style="margin-bottom:16px">
-        <h4 style="margin-bottom:8px">¿Cuánto tiempo toma el proceso?</h4>
-        <p style="color:var(--text-secondary);font-size:14px">En promedio 3 a 6 meses, dependiendo del número de deudas y la disposición de los acreedores a negociar.</p>
-      </div>
-      <div class="card" style="margin-bottom:16px">
-        <h4 style="margin-bottom:8px">¿Atienden en toda Colombia?</h4>
-        <p style="color:var(--text-secondary);font-size:14px">Sí. Todo el proceso es virtual. Nos reunimos por videollamada y gestionamos todo digitalmente.</p>
+      <div class="accordion-item" style="background:var(--glass);border:1px solid rgba(102,0,255,0.2);margin-bottom:12px;border-radius:12px;">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" style="background:transparent;color:#fff;box-shadow:none;">¿Cuánto cuesta?</button></h3>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body" style="color:rgba(255,255,255,0.6);">La primera asesoría es GRATIS. Solo pagas cuando veas resultados reales. Sin riesgo.</div></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contacto" style="background: var(--dark-surface);">
-    <div class="container" style="max-width:500px">
-      <h2 class="section__title animate__animated" data-animate="fadeInUp">Recupera tu paz financiera</h2>
-      <p class="section__subtitle animate__animated" data-animate="fadeInUp" data-wow-delay="0.2s">Agenda tu consulta gratuita de 15 minutos</p>
-
-      <div class="scarcity animate__animated" data-animate="fadeInUp" data-wow-delay="0.3s">
-        <p style="font-size:13px;color:var(--text-secondary)">Cupos disponibles esta semana</p>
-        <div class="scarcity__bar">
-          <div class="scarcity__fill" style="width:27%"></div>
-        </div>
-        <div class="scarcity__text">Solo quedan <strong style="color:var(--cyan)">13</strong> de 50 cupos</div>
-      </div>
-
-      <div class="card animate__animated" data-animate="fadeInUp" data-wow-delay="0.4s" style="margin-top:32px">
-        <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20mi%20consulta%20gratuita%20de%20deudas" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;margin-bottom:12px" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> Consulta gratis por WhatsApp
-        </a>
-        <p style="text-align:center;font-size:13px;color:var(--text-secondary)">📞 También al <a href="tel:+573000000000" style="color:var(--cyan)">+57 300 000 0000</a></p>
-      </div>
+  <!-- ===== CTA FINAL ===== -->
+  <section class="section text-center pb-5" id="cta">
+    <div data-aos="fade-up">
+      <h2 style="font-size:clamp(2rem,5vw,3.5rem);">¿Listo para tu libertad financiera?</h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:500px;margin:1rem auto 2rem;">Más de 2,800 colombianos ya dieron el paso. El próximo puedes ser tú.</p>
+      <a href="https://wa.me/573000000000?text=Quiero%20eliminar%20mis%20deudas%20ahora" class="glow-btn glow-btn--primary" style="font-size:1.3rem;padding:20px 60px;" target="_blank">
+        🚀 Empieza gratis ahora
+      </a>
+      <p class="mt-3" style="font-size:0.85rem;color:rgba(255,255,255,0.3);">🔒 Sin compromiso · Asesoría gratuita · Resultados garantizados</p>
     </div>
   </section>
 
-  <footer class="footer">
+  <!-- Confetti Button -->
+  <button class="confetti-btn" id="confettiBtn" title="¡Celebra!">🎉</button>
+
+  <!-- Footer -->
+  <footer>
     <div class="container">
-      <div class="footer__grid">
-        <div>
-          <h4>CeroDeuda</h4>
-          <ul>
-            <li>📍 Bogotá, Colombia</li>
-            <li>📞 <a href="https://wa.me/573000000000">+57 300 000 0000</a></li>
-            <li>📧 hola@cerodeuda.com.co</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Servicios</h4>
-          <ul>
-            <li><a href="#servicios">Negociación</a></li>
-            <li><a href="#servicios">Datacrédito</a></li>
-            <li><a href="#servicios">Asesoría legal</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Enlaces</h4>
-          <ul>
-            <li><a href="#como-funciona">Cómo funciona</a></li>
-            <li><a href="#casos">Casos de éxito</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p>© 2026 CeroDeuda Colombia. Todos los derechos reservados.</p>
-      </div>
+      <p class="mb-2">© 2026 <strong>CeroDeuda</strong> Colombia. Todos los derechos reservados.</p>
+      <p>🇨🇴 Bogotá — Medellín — Cali — Barranquilla</p>
     </div>
   </footer>
 
-  <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20mi%20consulta%20gratuita%20de%20deudas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <!-- ===== SCRIPTS ===== -->
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Splide -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+  <!-- AOS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Lenis -->
+  <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- tsParticles Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3/dist/confetti.min.js"></script>
 
   <script>
-  // Scroll Reveal with IntersectionObserver
-  document.addEventListener('DOMContentLoaded', () => {
+  /* ============================================================
+     1. THREE.JS — 3D Background with Floating Shapes
+     ============================================================ */
+  (function() {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.getElementById('three-canvas').appendChild(renderer.domElement);
+
+    const shapes = [];
+
+    // Create floating torus knots + icosahedrons
+    for (let i = 0; i < 8; i++) {
+      const geometry = i % 2 === 0
+        ? new THREE.TorusKnotGeometry(0.4, 0.15, 64, 8)
+        : new THREE.IcosahedronGeometry(0.35, 0);
+
+      const material = new THREE.MeshPhysicalMaterial({
+        color: i % 2 === 0 ? 0x6600FF : 0x00E5FF,
+        metalness: 0.3,
+        roughness: 0.2,
+        transparent: true,
+        opacity: 0.25,
+        wireframe: i % 2 === 0,
+        emissive: i % 2 === 0 ? 0x6600FF : 0x00E5FF,
+        emissiveIntensity: 0.15,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 10 - 5
+      );
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+      mesh.userData = {
+        speed: 0.1 + Math.random() * 0.3,
+        rotX: (Math.random() - 0.5) * 0.01,
+        rotY: (Math.random() - 0.5) * 0.01,
+        floatAmp: 0.1 + Math.random() * 0.3,
+        floatSpeed: 0.2 + Math.random() * 0.5,
+        initialY: mesh.position.y,
+      };
+      scene.add(mesh);
+      shapes.push(mesh);
+    }
+
+    camera.position.z = 8;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = Date.now() * 0.001;
+      shapes.forEach((mesh) => {
+        mesh.rotation.x += mesh.userData.rotX;
+        mesh.rotation.y += mesh.userData.rotY;
+        mesh.position.y = mesh.userData.initialY + Math.sin(time * mesh.userData.floatSpeed) * mesh.userData.floatAmp;
+      });
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  })();
+
+  /* ============================================================
+     2. GSAP — Hero Animation Sequence
+     ============================================================ */
+  gsap.from('.gsap-title span', { 
+    y: 80, opacity: 0, duration: 1, stagger: 0.2, ease: 'power4.out',
+    scrollTrigger: { trigger: '#hero', start: 'top 80%' }
+  });
+  gsap.from('.gsap-sub', { y: 40, opacity: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+  gsap.from('.gsap-btns a', { y: 30, opacity: 0, duration: 0.6, stagger: 0.15, delay: 0.9, ease: 'back.out(1.7)' });
+  gsap.from('.gsap-scarcity', { y: 30, opacity: 0, duration: 0.6, delay: 1.2, ease: 'power3.out' });
+
+  /* ============================================================
+     3. LENIS — Smooth Scroll
+     ============================================================ */
+  const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  /* ============================================================
+     4. SPLIDE — Testimonials Carousel
+     ============================================================ */
+  new Splide('#testimonios-carousel', {
+    type: 'loop', perPage: 2, gap: '1.5rem',
+    autoplay: true, interval: 3000, pauseOnHover: true,
+    breakpoints: { 768: { perPage: 1 } },
+    arrows: true, pagination: true,
+  }).mount();
+
+  /* ============================================================
+     5. AOS — Scroll Animations
+     ============================================================ */
+  AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+
+  /* ============================================================
+     6. CountUp Animation
+     ============================================================ */
+  document.querySelectorAll('.countup').forEach((el) => {
+    const target = parseInt(el.dataset.target);
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate__animated', 'animate__' + entry.target.dataset.animate);
-          entry.target.style.visibility = 'visible';
-          observer.unobserve(entry.target);
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current + (target > 1000 ? '+' : '%');
+          }, 30);
+          observer.unobserve(el);
         }
       });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('[data-animate]').forEach(el => {
-      el.style.visibility = 'hidden';
-      observer.observe(el);
-    });
+    }, { threshold: 0.5 });
+    observer.observe(el);
   });
 
-  // Menu toggle
-  document.getElementById('menuToggle')?.addEventListener('click', () => {
-    document.getElementById('mainNav').classList.toggle('open');
-  });
-
-  // Swiper
-  new Swiper('.testimonialSwiper', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    breakpoints: {
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
-  });
-
-  // P5 particles with connections
-  new p5((p) => {
-    let particles = [];
-    p.setup = function() {
-      let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
-      canvas.parent('p5-bg');
-      p.colorMode(p.RGB, 255);
-      p.noStroke();
-      for (let i = 0; i < 50; i++) {
-        particles.push({
-          x: p.random(p.width), y: p.random(p.height),
-          vx: 0, vy: 0,
-          size: p.random(2, 5),
-          alpha: p.random(0.03, 0.08)
-        });
-      }
-    };
-    p.draw = function() {
-      p.clear();
-      let t = p.frameCount * 0.0003;
-      for (let pt of particles) {
-        let angle = p.noise(pt.x * 0.003, pt.y * 0.003, t) * p.TWO_PI * 2;
-        pt.vx += p.cos(angle) * 0.1; pt.vy += p.sin(angle) * 0.1;
-        pt.vx *= 0.95; pt.vy *= 0.95;
-        pt.x += pt.vx; pt.y += pt.vy;
-        if (pt.x < 0) pt.x = p.width; if (pt.x > p.width) pt.x = 0;
-        if (pt.y < 0) pt.y = p.height; if (pt.y > p.height) pt.y = 0;
-        p.fill(102, 0, 255, pt.alpha * 255);
-        p.circle(pt.x, pt.y, pt.size);
-      }
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-          if (d < 120) {
-            let a = p.map(d, 0, 120, 0.06, 0);
-            p.stroke(0, 229, 255, a * 255);
-            p.strokeWeight(0.5);
-            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-            p.noStroke();
-          }
+  /* ============================================================
+     7. Progress Bars Animation
+     ============================================================ */
+  document.querySelectorAll('.progress-fill').forEach((bar) => {
+    const width = bar.dataset.width;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => { bar.style.width = width + '%'; }, 300);
+          observer.unobserve(bar);
         }
-      }
-    };
-    p.windowResized = function() { p.resizeCanvas(p.windowWidth, p.windowHeight); };
-  }, 'p5-bg');
+      });
+    }, { threshold: 0.3 });
+    observer.observe(bar);
+  });
+
+  /* ============================================================
+     8. Confetti (tsParticles)
+     ============================================================ */
+  document.getElementById('confettiBtn').addEventListener('click', () => {
+    const defaults = { spread: 360, ticks: 100, gravity: 0.5, decay: 0.94, startVelocity: 30, colors: ['#6600FF', '#00E5FF', '#fff', '#FFD700'] };
+    confetti({ ...defaults, particleCount: 50, scalar: 2 });
+    confetti({ ...defaults, particleCount: 25, scalar: 1.5, origin: { x: 0.3, y: 0.6 } });
+    confetti({ ...defaults, particleCount: 25, scalar: 1.5, origin: { x: 0.7, y: 0.6 } });
+  });
+
+  /* ============================================================
+     9. Lottie — Animated Icon (hidden but loaded for perf)
+     ============================================================ */
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-bg'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets9.lottiefiles.com/packages/lf20_p1qiuvkj.json' // confetti animation
+  });
+
+  /* ============================================================
+     10. Live Counter (falsos real-time)
+     ============================================================ */
+  let viewers = 173;
+  setInterval(() => {
+    viewers += Math.random() > 0.5 ? 1 : -1;
+    if (viewers < 150) viewers = 150;
+    if (viewers > 220) viewers = 220;
+    document.querySelector('#hero p:last-child').textContent = `✋ ${viewers} personas están viendo esto ahora`;
+  }, 5000);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Decrease cupos
+    let cupos = 27;
+    setInterval(() => {
+      cupos = Math.max(0, cupos - 1);
+      document.getElementById('cupos-disponibles').textContent = cupos;
+      document.querySelector('.progress-bar').style.width = (cupos / 100 * 100) + '%';
+    }, 30000);
+  });
   </script>
 </body>
 </html>
